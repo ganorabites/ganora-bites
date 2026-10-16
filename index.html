@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome untuk Ikon Sosmed & Keranjang -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Swiper CSS untuk efek geser (Slider/Carousel) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
     <script>
         tailwind.config = {
             theme: {
@@ -31,6 +34,10 @@
         .cart-sidebar.open {
             transform: translateX(0);
         }
+        /* Custom Pagination Swiper */
+        .swiper-pagination-bullet-active {
+            background-color: #ea580c !important;
+        }
     </style>
 </head>
 <body class="bg-orange-50 font-sans text-gray-800">
@@ -38,16 +45,14 @@
     <!-- ==================== NAVBAR ==================== -->
     <nav class="bg-white shadow-md sticky top-0 z-40">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- LOGO HEADER (Sudah diganti menggunakan gambar) -->
             <a href="#" class="flex items-center gap-3">
                 <img src="logo.jpg" alt="Logo GANORA BITES" class="h-12 w-auto object-contain">
                 <span class="text-2xl font-bold text-brand-brown tracking-wide">GANORA BITES</span>
             </a>
             
             <div class="flex items-center gap-6">
+                <a href="#infografis" class="hidden md:block font-semibold text-gray-600 hover:text-brand-orange">Bahan Kami</a>
                 <a href="#produk" class="hidden md:block font-semibold text-gray-600 hover:text-brand-orange">Produk</a>
-                <a href="#tentang" class="hidden md:block font-semibold text-gray-600 hover:text-brand-orange">Tentang Kami</a>
-                <!-- Ikon Keranjang -->
                 <button onclick="toggleCart()" class="relative text-brand-brown hover:text-brand-orange">
                     <i class="fas fa-shopping-cart text-2xl"></i>
                     <span id="cart-badge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">0</span>
@@ -57,118 +62,233 @@
     </nav>
 
     <!-- ==================== HERO SECTION ==================== -->
-    <header class="max-w-6xl mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-8">
+    <header class="max-w-6xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row items-center gap-8">
         <div class="md:w-1/2">
+            <div class="inline-block bg-green-100 text-brand-green font-bold px-4 py-1 rounded-full text-sm mb-4">
+                100% Gluten-Free & Alami 🍃
+            </div>
             <h1 class="text-4xl md:text-5xl font-extrabold text-brand-brown mb-4 leading-tight">
-                Cemilan Sehat Bebas Gluten, <span class="text-brand-orange">Rasa Tak Terlupakan!</span>
+                Kelezatan Sehat dalam <span class="text-brand-orange">Setiap Gigitan!</span>
             </h1>
-            <p class="text-lg text-gray-600 mb-6">
-                Nikmati kebaikan alam dari ubi ganyong berpadu dengan kesegaran ekstrak kulit jeruk. GANORA BITES hadir untuk menemani gaya hidup sehatmu tanpa kompromi pada rasa.
+            <p class="text-lg text-gray-600 mb-8">
+                GANORA BITES memadukan kebaikan ubi ganyong lokal dengan kesegaran ekstrak kulit jeruk. Ngemil enak tanpa rasa bersalah, aman untuk pencernaanmu.
             </p>
             <a href="#produk" class="inline-block bg-brand-orange text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-orange-700 transition">
-                Pesan Sekarang
+                <i class="fas fa-cookie-bite mr-2"></i> Pesan Sekarang
             </a>
         </div>
-        <div class="md:w-1/2">
-            <img src="https://placehold.co/600x400/ea580c/ffffff?text=Foto+Cookies+Ganyong" alt="Cookies GANORA BITES" class="rounded-2xl shadow-xl w-full">
-            <!-- EDIT FOTO UTAMA: Ganti link placehold.co dengan nama foto produk Anda, misal src="foto-utama.jpg" -->
+        <div class="md:w-1/2 w-full">
+            <img src="https://placehold.co/600x400/ea580c/ffffff?text=Foto+Cookies+Ganyong" alt="Cookies GANORA BITES" class="rounded-2xl shadow-xl w-full object-cover h-64 md:h-96">
+            <!-- EDIT FOTO: Ganti link placehold.co dengan nama file gambar banner Anda -->
         </div>
     </header>
 
-    <!-- ==================== PRODUK SECTION ==================== -->
-    <section id="produk" class="bg-white py-16">
+    <!-- ==================== INFOGRAFIS SLIDER SECTION ==================== -->
+    <section id="infografis" class="bg-brand-brown py-16">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-brand-brown mb-12">Pilihan Favorit Kami</h2>
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-white mb-3">Rahasia Di Balik GANORA BITES</h2>
+                <p class="text-orange-200 max-w-2xl mx-auto">Kami hanya menggunakan bahan-bahan terbaik yang tidak hanya enak, tapi juga memberikan manfaat nyata untuk tubuhmu.</p>
+            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Produk 1 -->
-                <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
-                    <img src="https://placehold.co/400x300/ffedd5/78350f?text=Pouch+Personal" alt="Pouch Personal" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-brand-brown mb-2">Pouch Personal (100g)</h3>
-                        <p class="text-gray-600 mb-4 text-sm">Pas untuk menemani waktu kerjamu atau saat bersantai.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-extrabold text-brand-orange">Rp 35.000</span>
-                            <!-- Tombol Tambah Keranjang -->
-                            <button onclick="addToCart('p1', 'Pouch Personal (100g)', 35000)" class="bg-brand-brown text-white px-4 py-2 rounded-lg hover:bg-orange-900 transition text-sm font-bold">
-                                + Keranjang
-                            </button>
+            <!-- Swiper Container Infografis -->
+            <div class="swiper swiper-infografis pb-12">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg h-full flex flex-col items-center text-center">
+                            <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-leaf text-4xl text-brand-green"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-brown mb-3">Ubi Ganyong Lokal</h3>
+                            <p class="text-gray-600 text-sm">Kaya serat dan memiliki Indeks Glikemik rendah. Sumber energi kompleks yang membuat kenyang lebih lama dan ramah bagi penderita diabetes.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg h-full flex flex-col items-center text-center">
+                            <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-lemon text-4xl text-brand-orange"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-brown mb-3">Ekstrak Kulit Jeruk</h3>
+                            <p class="text-gray-600 text-sm">Bukan sekadar perasa! Mengandung antioksidan tinggi dan Vitamin C, memberikan sensasi segar yang menghilangkan rasa 'eneg' saat ngemil.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg h-full flex flex-col items-center text-center">
+                            <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-wheat-alt-slash text-4xl text-brand-brown"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-brown mb-3">100% Gluten-Free</h3>
+                            <p class="text-gray-600 text-sm">Aman dikonsumsi untuk kamu yang sensitif terhadap gluten (Celiac). Menjaga pencernaan tetap sehat tanpa mengorbankan tekstur renyah cookies.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg h-full flex flex-col items-center text-center">
+                            <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-heartbeat text-4xl text-red-500"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-brown mb-3">Tanpa Pengawet Buatan</h3>
+                            <p class="text-gray-600 text-sm">Dipanggang secara alami dengan cinta. Kami menjamin setiap gigitan aman untuk seluruh anggota keluarga, dari anak-anak hingga lansia.</p>
                         </div>
                     </div>
                 </div>
+                <!-- Pagination (Titik-titik di bawah) -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Produk 2 -->
-                <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition relative border-2 border-brand-orange">
-                    <div class="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Terlaris</div>
-                    <img src="https://placehold.co/400x300/ffedd5/78350f?text=Toples+Keluarga" alt="Toples Keluarga" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-brand-brown mb-2">Toples Keluarga (250g)</h3>
-                        <p class="text-gray-600 mb-4 text-sm">Berbagi kebaikan dan kesehatan bersama keluarga tercinta.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-extrabold text-brand-orange">Rp 75.000</span>
-                            <!-- Tombol Tambah Keranjang -->
-                            <button onclick="addToCart('p2', 'Toples Keluarga (250g)', 75000)" class="bg-brand-orange text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition text-sm font-bold">
-                                + Keranjang
-                            </button>
-                        </div>
-                    </div>
+    <!-- ==================== PRODUK SLIDER SECTION ==================== -->
+    <section id="produk" class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <h2 class="text-3xl font-bold text-brand-brown mb-2">Pilihan Belanja</h2>
+                    <p class="text-gray-600">Geser untuk melihat semua varian dan paket spesial kami.</p>
                 </div>
+                <!-- Tombol Navigasi Manual -->
+                <div class="hidden md:flex gap-2">
+                    <button class="custom-prev bg-orange-100 hover:bg-brand-orange hover:text-white text-brand-orange w-10 h-10 rounded-full flex items-center justify-center transition"><i class="fas fa-chevron-left"></i></button>
+                    <button class="custom-next bg-orange-100 hover:bg-brand-orange hover:text-white text-brand-orange w-10 h-10 rounded-full flex items-center justify-center transition"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
 
-                <!-- Produk 3 -->
-                <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
-                    <img src="https://placehold.co/400x300/ffedd5/78350f?text=Hampers+Spesial" alt="Hampers Spesial" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-brand-brown mb-2">Hampers Spesial (3 Toples)</h3>
-                        <p class="text-gray-600 mb-4 text-sm">Kado sehat yang manis untuk sahabat dan kolega.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-extrabold text-brand-orange">Rp 210.000</span>
-                            <!-- Tombol Tambah Keranjang -->
-                            <button onclick="addToCart('p3', 'Hampers Spesial (3 Toples)', 210000)" class="bg-brand-brown text-white px-4 py-2 rounded-lg hover:bg-orange-900 transition text-sm font-bold">
-                                + Keranjang
-                            </button>
+            <!-- Swiper Container Produk -->
+            <div class="swiper swiper-produk pb-8">
+                <div class="swiper-wrapper">
+                    
+                    <!-- Produk 1 -->
+                    <div class="swiper-slide">
+                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition h-full flex flex-col">
+                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Pouch+Personal" alt="Pouch Personal" class="w-full h-48 object-cover">
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-brand-brown mb-1">Pouch Personal</h3>
+                                    <p class="text-gray-600 text-sm mb-4">Kemasan 100g. Pas untuk menemani me-time atau ngopi.</p>
+                                </div>
+                                <div class="flex justify-between items-center mt-auto">
+                                    <span class="text-lg font-extrabold text-brand-orange">Rp 35.000</span>
+                                    <button onclick="addToCart('p1', 'Pouch Personal (100g)', 35000)" class="bg-brand-brown text-white px-3 py-2 rounded-lg hover:bg-orange-900 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Produk 2 (Terlaris) -->
+                    <div class="swiper-slide">
+                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition relative border-2 border-brand-orange h-full flex flex-col">
+                            <div class="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Terlaris</div>
+                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Toples+Keluarga" alt="Toples Keluarga" class="w-full h-48 object-cover">
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-brand-brown mb-1">Toples Keluarga</h3>
+                                    <p class="text-gray-600 text-sm mb-4">Kemasan 250g. Berbagi kebaikan sehat dengan keluarga.</p>
+                                </div>
+                                <div class="flex justify-between items-center mt-auto">
+                                    <span class="text-lg font-extrabold text-brand-orange">Rp 75.000</span>
+                                    <button onclick="addToCart('p2', 'Toples Keluarga (250g)', 75000)" class="bg-brand-orange text-white px-3 py-2 rounded-lg hover:bg-orange-700 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produk 3 (Bundle) -->
+                    <div class="swiper-slide">
+                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition h-full flex flex-col">
+                            <div class="absolute top-0 right-0 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Hemat 10Rb!</div>
+                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Bundle+Coba" alt="Bundle Hemat" class="w-full h-48 object-cover">
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-brand-brown mb-1">Bundle "Cobain Dulu"</h3>
+                                    <p class="text-gray-600 text-sm mb-4">1 Toples (250g) + 1 Pouch (100g). Pas untuk stok sebulan.</p>
+                                </div>
+                                <div class="flex justify-between items-center mt-auto">
+                                    <span class="text-lg font-extrabold text-brand-orange">Rp 100.000</span>
+                                    <button onclick="addToCart('p3', 'Bundle Cobain Dulu', 100000)" class="bg-brand-brown text-white px-3 py-2 rounded-lg hover:bg-orange-900 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produk 4 (Hampers) -->
+                    <div class="swiper-slide">
+                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition h-full flex flex-col">
+                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Hampers" alt="Hampers" class="w-full h-48 object-cover">
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-brand-brown mb-1">Hampers Spesial</h3>
+                                    <p class="text-gray-600 text-sm mb-4">Isi 3 Toples. Cocok untuk kado/bingkisan yang elegan.</p>
+                                </div>
+                                <div class="flex justify-between items-center mt-auto">
+                                    <span class="text-lg font-extrabold text-brand-orange">Rp 210.000</span>
+                                    <button onclick="addToCart('p4', 'Hampers Spesial (3 Toples)', 210000)" class="bg-brand-brown text-white px-3 py-2 rounded-lg hover:bg-orange-900 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produk 5 (Gift Box) -->
+                    <div class="swiper-slide">
+                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition h-full flex flex-col">
+                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Gift+Box" alt="Gift Box" class="w-full h-48 object-cover">
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-brand-brown mb-1">Premium Gift Box</h3>
+                                    <p class="text-gray-600 text-sm mb-4">2 Toples + Kartu Ucapan Custom + Box Eksklusif.</p>
+                                </div>
+                                <div class="flex justify-between items-center mt-auto">
+                                    <span class="text-lg font-extrabold text-brand-orange">Rp 160.000</span>
+                                    <button onclick="addToCart('p5', 'Premium Gift Box', 160000)" class="bg-brand-brown text-white px-3 py-2 rounded-lg hover:bg-orange-900 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produk 6 (Reseller) -->
+                    <div class="swiper-slide">
+                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition h-full flex flex-col">
+                            <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Harga Grosir</div>
+                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Paket+Reseller" alt="Reseller" class="w-full h-48 object-cover">
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-brand-brown mb-1">Paket Usaha (Reseller)</h3>
+                                    <p class="text-gray-600 text-sm mb-4">10 Pcs Pouch (100g). Peluang untung untuk dijual lagi!</p>
+                                </div>
+                                <div class="flex justify-between items-center mt-auto">
+                                    <span class="text-lg font-extrabold text-brand-orange">Rp 280.000</span>
+                                    <button onclick="addToCart('p6', 'Paket Usaha Reseller (10 Pouch)', 280000)" class="bg-brand-brown text-white px-3 py-2 rounded-lg hover:bg-orange-900 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== FOOTER & SOSIAL MEDIA ==================== -->
-    <footer class="bg-[#0f172a] text-gray-300 py-12 mt-16">
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-[#0f172a] text-gray-300 py-12 mt-8">
         <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-gray-700 pb-8">
-            <!-- Kolom 1: Merek & Logo Bawah -->
             <div>
-                <!-- LOGO FOOTER (Sudah diganti gambar + background putih agar terlihat bagus di warna gelap) -->
                 <div class="flex items-center gap-3 mb-4">
                     <img src="logo.jpg" alt="Logo GANORA BITES" class="h-14 w-14 bg-white p-1 rounded-xl object-contain">
                     <h3 class="text-2xl font-bold text-white tracking-widest">GANORA BITES</h3>
                 </div>
                 <p class="text-sm text-gray-400 mb-6">Camilan sehat lokal, tanpa kompromi pada rasa. Bebas gluten, berbahan dasar ubi ganyong dan jeruk alami.</p>
-                
-                <!-- Ikon Sosial Media -->
                 <div class="flex gap-4">
-                    <!-- EDIT LINK INSTAGRAM -->
-                    <a href="#" class="bg-gray-800 hover:bg-brand-orange w-10 h-10 rounded-full flex items-center justify-center transition">
-                        <i class="fab fa-instagram text-white text-xl"></i>
-                    </a>
-                    <!-- EDIT LINK FACEBOOK -->
-                    <a href="#" class="bg-gray-800 hover:bg-brand-orange w-10 h-10 rounded-full flex items-center justify-center transition">
-                        <i class="fab fa-facebook-f text-white text-xl"></i>
-                    </a>
-                    <!-- EDIT LINK TIKTOK -->
-                    <a href="#" class="bg-gray-800 hover:bg-brand-orange w-10 h-10 rounded-full flex items-center justify-center transition">
-                        <i class="fab fa-tiktok text-white text-xl"></i>
-                    </a>
+                    <a href="#" class="bg-gray-800 hover:bg-brand-orange w-10 h-10 rounded-full flex items-center justify-center transition"><i class="fab fa-instagram text-white text-xl"></i></a>
+                    <a href="#" class="bg-gray-800 hover:bg-brand-orange w-10 h-10 rounded-full flex items-center justify-center transition"><i class="fab fa-facebook-f text-white text-xl"></i></a>
+                    <a href="#" class="bg-gray-800 hover:bg-brand-orange w-10 h-10 rounded-full flex items-center justify-center transition"><i class="fab fa-tiktok text-white text-xl"></i></a>
                 </div>
             </div>
-
-            <!-- Kolom 2: Info -->
             <div>
                 <h4 class="text-white font-bold mb-4">INFORMASI</h4>
                 <p class="text-sm text-gray-400">Pengiriman dilakukan setiap hari kerja (Senin - Jumat). Maksimal konfirmasi pembayaran pukul 15.00 WIB untuk dikirim di hari yang sama.</p>
             </div>
-
-            <!-- Kolom 3: Kontak -->
             <div>
                 <h4 class="text-white font-bold mb-4">KONTAK KAMI</h4>
                 <p class="text-sm text-gray-400 mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Semarang, Jawa Tengah</p>
@@ -181,145 +301,151 @@
         </div>
     </footer>
 
-    <!-- ==================== AREA KERANJANG BELANJA (SIDEBAR MELAYANG) ==================== -->
+    <!-- ==================== SIDEBAR KERANJANG ==================== -->
     <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="toggleCart()"></div>
-    <div id="cart-sidebar" class="cart-sidebar fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 flex flex-col">
-        <!-- Header Keranjang -->
+    <div id="cart-sidebar" class="cart-sidebar fixed top-0 right-0 h-full w-80 max-w-full bg-white shadow-2xl z-50 flex flex-col">
         <div class="p-4 border-b flex justify-between items-center bg-orange-50">
-            <h2 class="text-xl font-bold text-brand-brown"><i class="fas fa-shopping-cart mr-2"></i> Keranjangmu</h2>
+            <h2 class="text-xl font-bold text-brand-brown"><i class="fas fa-shopping-cart mr-2"></i> Keranjang</h2>
             <button onclick="toggleCart()" class="text-gray-500 hover:text-red-500"><i class="fas fa-times text-2xl"></i></button>
         </div>
         
-        <!-- Daftar Barang di Keranjang -->
         <div id="cart-items" class="p-4 flex-1 overflow-y-auto space-y-4">
-            <p class="text-gray-400 text-center mt-10">Keranjang masih kosong, nih!</p>
+            <p class="text-gray-400 text-center mt-10">Keranjang masih kosong.</p>
         </div>
 
-        <!-- Bagian Checkout / Pembayaran -->
         <div class="p-4 border-t bg-gray-50">
             <div class="flex justify-between items-center mb-4">
-                <span class="font-bold text-gray-600">Total Belanja:</span>
+                <span class="font-bold text-gray-600">Total:</span>
                 <span id="cart-total" class="font-extrabold text-xl text-brand-orange">Rp 0</span>
             </div>
-            <!-- Tombol Arahkan ke WhatsApp -->
             <button onclick="checkoutWA()" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition flex items-center justify-center gap-2">
-                <i class="fab fa-whatsapp text-xl"></i> Checkout via WhatsApp
+                <i class="fab fa-whatsapp text-xl"></i> Pesan via WhatsApp
             </button>
         </div>
     </div>
 
-    <!-- ==================== JAVASCRIPT UNTUK KERANJANG & WHATSAPP ==================== -->
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <!-- Swiper JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <script>
-        let cart = []; // Menyimpan daftar pesanan
+        // INISIALISASI SWIPER (SLIDER)
+        // 1. Swiper untuk Infografis (bisa digeser dan muter/loop terus)
+        const swiperInfografis = new Swiper('.swiper-infografis', {
+            slidesPerView: 1.2,
+            spaceBetween: 20,
+            loop: true, // Membuatnya berputar terus (muter)
+            centeredSlides: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: { slidesPerView: 3, centeredSlides: false },
+                1024: { slidesPerView: 4, centeredSlides: false }
+            }
+        });
 
-        // Format angka ke mata uang Rupiah
-        const formatRupiah = (angka) => {
-            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
-        }
+        // 2. Swiper untuk Produk (Banyak pilihan belanja)
+        const swiperProduk = new Swiper('.swiper-produk', {
+            slidesPerView: 1.2,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.custom-next',
+                prevEl: '.custom-prev',
+            },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 } // Menampilkan 4 produk sejajar di laptop
+            }
+        });
 
-        // Buka / Tutup sidebar keranjang
+        // FUNGSI KERANJANG & WHATSAPP
+        let cart = [];
+        const formatRupiah = (angka) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+
         function toggleCart() {
             document.getElementById('cart-sidebar').classList.toggle('open');
             document.getElementById('cart-overlay').classList.toggle('hidden');
             renderCart();
         }
 
-        // Tambah produk ke keranjang
         function addToCart(id, name, price) {
             const existingItem = cart.find(item => item.id === id);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ id, name, price, quantity: 1 });
-            }
+            if (existingItem) existingItem.quantity += 1;
+            else cart.push({ id, name, price, quantity: 1 });
             updateBadge();
-            // Buka keranjang otomatis setiap nambah barang
             document.getElementById('cart-sidebar').classList.add('open');
             document.getElementById('cart-overlay').classList.remove('hidden');
             renderCart();
         }
 
-        // Kurangi atau Hapus produk dari keranjang
         function minCart(id) {
             const item = cart.find(item => item.id === id);
             if (item) {
                 item.quantity -= 1;
-                if (item.quantity === 0) {
-                    cart = cart.filter(i => i.id !== id);
-                }
+                if (item.quantity === 0) cart = cart.filter(i => i.id !== id);
             }
             updateBadge();
             renderCart();
         }
 
-        // Update angka merah di ikon keranjang Navbar
         function updateBadge() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cart-badge').innerText = totalItems;
+            document.getElementById('cart-badge').innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
         }
 
-        // Tampilkan daftar barang di dalam sidebar keranjang
         function renderCart() {
-            const cartItemsContainer = document.getElementById('cart-items');
-            const cartTotalElement = document.getElementById('cart-total');
+            const container = document.getElementById('cart-items');
+            const totalElement = document.getElementById('cart-total');
             let total = 0;
 
-            cartItemsContainer.innerHTML = ''; // Kosongkan dulu sebelum diisi ulang
-
+            container.innerHTML = '';
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p class="text-gray-400 text-center mt-10">Keranjang masih kosong, nih!</p>';
+                container.innerHTML = '<p class="text-gray-400 text-center mt-10">Keranjang masih kosong.</p>';
             } else {
                 cart.forEach(item => {
-                    const subtotal = item.price * item.quantity;
-                    total += subtotal;
-
-                    cartItemsContainer.innerHTML += `
+                    total += item.price * item.quantity;
+                    container.innerHTML += `
                         <div class="flex justify-between items-center bg-white p-3 rounded shadow-sm border border-gray-100">
                             <div>
                                 <h4 class="font-bold text-sm text-brand-brown">${item.name}</h4>
                                 <p class="text-brand-orange text-sm">${formatRupiah(item.price)}</p>
                             </div>
                             <div class="flex items-center gap-3">
-                                <button onclick="minCart('${item.id}')" class="bg-gray-200 w-6 h-6 rounded flex items-center justify-center font-bold text-gray-600 hover:bg-gray-300">-</button>
+                                <button onclick="minCart('${item.id}')" class="bg-gray-200 w-6 h-6 rounded font-bold text-gray-600">-</button>
                                 <span class="font-bold text-sm">${item.quantity}</span>
-                                <button onclick="addToCart('${item.id}', '${item.name}', ${item.price})" class="bg-gray-200 w-6 h-6 rounded flex items-center justify-center font-bold text-gray-600 hover:bg-gray-300">+</button>
+                                <button onclick="addToCart('${item.id}', '${item.name}', ${item.price})" class="bg-gray-200 w-6 h-6 rounded font-bold text-gray-600">+</button>
                             </div>
                         </div>
                     `;
                 });
             }
-            cartTotalElement.innerText = formatRupiah(total);
+            totalElement.innerText = formatRupiah(total);
         }
 
-        // Proses Checkout mengirim pesan ke WA otomatis
         function checkoutWA() {
             if (cart.length === 0) {
-                alert('Keranjang Anda masih kosong. Silakan pilih produk terlebih dahulu.');
+                alert('Pilih produk dulu yuk!');
                 return;
             }
-
-            // ==========================================
-            // EDIT NOMOR WA DI BAWAH INI
-            // Format: gunakan kode negara (62) tanpa angka 0 di depan
-            // ==========================================
+            
+            // EDIT NOMOR WA DISINI (Pastikan mulai dengan 62 tanpa spasi/tanda +)
             const noWA = "6281234567890"; 
             
             let message = "Halo Admin *GANORA BITES*, saya ingin memesan:\n\n";
-            let totalBelanja = 0;
-
+            let total = 0;
             cart.forEach(item => {
-                const subtotal = item.price * item.quantity;
-                totalBelanja += subtotal;
-                message += `- ${item.quantity}x ${item.name} (${formatRupiah(subtotal)})\n`;
+                total += item.price * item.quantity;
+                message += `- ${item.quantity}x ${item.name} (${formatRupiah(item.price * item.quantity)})\n`;
             });
-
-            message += `\n*Total Belanja: ${formatRupiah(totalBelanja)}*\n\nMohon informasi ketersediaan dan total ongkos kirim ke alamat saya. Terima kasih!`;
-
-            // Membuat link WA
-            const waLink = `https://wa.me/${noWA}?text=${encodeURIComponent(message)}`;
+            message += `\n*Total Belanja: ${formatRupiah(total)}*\n\nMohon info ongkirnya ya. Terima kasih!`;
             
-            // Membuka tab WA baru
-            window.open(waLink, '_blank');
+            window.open(`https://wa.me/${noWA}?text=${encodeURIComponent(message)}`, '_blank');
         }
     </script>
 </body>
