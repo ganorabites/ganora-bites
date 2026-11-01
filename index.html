@@ -50,10 +50,17 @@
                 <span class="text-2xl font-bold text-brand-brown tracking-wide">GANORA BITES</span>
             </a>
             
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4 md:gap-6">
                 <a href="#" class="hidden md:block font-semibold text-gray-600 hover:text-brand-orange">Beranda</a>
                 <a href="#infografis" class="hidden md:block font-semibold text-gray-600 hover:text-brand-orange">Bahan Kami</a>
                 <a href="#produk" class="hidden md:block font-semibold text-gray-600 hover:text-brand-orange">Produk</a>
+                
+                <!-- Tombol Klaim Member -->
+                <button onclick="claimMember()" class="bg-amber-100 text-brand-brown hover:bg-brand-brown hover:text-white px-3 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                    <i class="fas fa-id-card"></i> <span class="hidden sm:inline">Klaim</span> Member
+                </button>
+
+                <!-- Ikon Keranjang -->
                 <button onclick="toggleCart()" class="relative text-brand-brown hover:text-brand-orange">
                     <i class="fas fa-shopping-cart text-2xl"></i>
                     <span id="cart-badge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">0</span>
@@ -62,7 +69,7 @@
         </div>
     </nav>
 
-    <!-- ==================== HERO SECTION ==================== -->
+    <!-- ==================== HERO SECTION (AREA DESAIN / FOTO PRODUK UTAMA) ==================== -->
     <header class="max-w-6xl mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row items-center gap-8">
         <div class="md:w-1/2">
             <div class="inline-block bg-green-100 text-brand-green font-bold px-4 py-1 rounded-full text-sm mb-4">
@@ -74,13 +81,25 @@
             <p class="text-lg text-gray-600 mb-8">
                 GANORA BITES memadukan kebaikan ubi ganyong lokal dengan kesegaran ekstrak kulit jeruk. Ngemil enak tanpa rasa bersalah, aman untuk pencernaanmu.
             </p>
-            <a href="#produk" class="inline-block bg-brand-orange text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-orange-700 transition">
-                <i class="fas fa-cookie-bite mr-2"></i> Pesan Sekarang
-            </a>
+            <div class="flex flex-wrap gap-4">
+                <a href="#produk" class="bg-brand-orange text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-orange-700 transition">
+                    <i class="fas fa-cookie-bite mr-2"></i> Pesan Sekarang
+                </a>
+                <button onclick="claimMember()" class="bg-white border-2 border-brand-brown text-brand-brown font-bold py-3 px-6 rounded-full hover:bg-brand-brown hover:text-white transition shadow-sm">
+                    <i class="fas fa-gift mr-2"></i> Klaim Member
+                </button>
+            </div>
         </div>
+        
+        <!-- BAGIAN UNTUK MENARUH FOTO / DESAIN PRODUK UTAMA DI BERANDA -->
         <div class="md:w-1/2 w-full">
-            <img src="https://placehold.co/600x400/ea580c/ffffff?text=Foto+Cookies+Ganyong" alt="Cookies GANORA BITES" class="rounded-2xl shadow-xl w-full object-cover h-64 md:h-96">
-            <!-- EDIT FOTO: Ganti link placehold.co dengan nama file gambar banner Anda -->
+            <div class="relative group">
+                <!-- Ganti link placehold.co di bawah ini dengan nama file gambar produk Anda (misal: "produk-utama.jpg") -->
+                <img src="https://placehold.co/600x400/ea580c/ffffff?text=Taruh+Desain/Foto+Produk+Di+Sini" alt="Desain Produk GANORA BITES" class="rounded-2xl shadow-xl w-full object-cover h-64 md:h-96 border-4 border-white">
+                <div class="absolute bottom-3 left-3 bg-black bg-opacity-60 text-white text-xs px-3 py-1.5 rounded-lg backdrop-blur-sm">
+                    <i class="fas fa-info-circle mr-1"></i> Area Foto / Desain Utama Beranda
+                </div>
+            </div>
         </div>
     </header>
 
@@ -92,7 +111,6 @@
                 <p class="text-orange-200 max-w-2xl mx-auto">Kami hanya menggunakan bahan-bahan terbaik yang tidak hanya enak, tapi juga memberikan manfaat nyata untuk tubuhmu.</p>
             </div>
             
-            <!-- Swiper Container Infografis -->
             <div class="swiper swiper-infografis pb-12">
                 <div class="swiper-wrapper">
                     <!-- Slide 1 -->
@@ -119,7 +137,6 @@
                     <div class="swiper-slide h-auto">
                         <div class="bg-white p-8 rounded-2xl shadow-lg h-full flex flex-col items-center text-center">
                             <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-6 relative">
-                                <!-- Ikon silang merah untuk representasi larangan (Gluten-Free) -->
                                 <i class="fas fa-ban text-4xl text-red-500 absolute"></i>
                             </div>
                             <h3 class="text-xl font-bold text-brand-brown mb-3">100% Gluten-Free</h3>
@@ -137,7 +154,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Pagination (Titik-titik di bawah) -->
                 <div class="swiper-pagination"></div>
             </div>
         </div>
@@ -149,119 +165,120 @@
             <div class="flex justify-between items-end mb-10">
                 <div>
                     <h2 class="text-3xl font-bold text-brand-brown mb-2">Pilihan Belanja</h2>
-                    <p class="text-gray-600">Geser untuk melihat semua varian dan paket spesial kami.</p>
+                    <p class="text-gray-600">Geser untuk melihat varian produk dan paket spesial kami.</p>
                 </div>
-                <!-- Tombol Navigasi Manual -->
                 <div class="hidden md:flex gap-2">
                     <button class="custom-prev bg-orange-100 hover:bg-brand-orange hover:text-white text-brand-orange w-10 h-10 rounded-full flex items-center justify-center transition"><i class="fas fa-chevron-left"></i></button>
                     <button class="custom-next bg-orange-100 hover:bg-brand-orange hover:text-white text-brand-orange w-10 h-10 rounded-full flex items-center justify-center transition"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
 
-            <!-- Swiper Container Produk -->
             <div class="swiper swiper-produk pb-8">
                 <div class="swiper-wrapper">
                     
-                    <!-- Produk 1 -->
+                    <!-- Produk 1 (Tersedia / Bisa Dibeli - Harga Rp 22.000) -->
                     <div class="swiper-slide">
-                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition h-full flex flex-col">
-                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Pouch+Personal" alt="Pouch Personal" class="w-full h-48 object-cover">
+                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition relative border-2 border-brand-orange h-full flex flex-col">
+                            <div class="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Tersedia</div>
+                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Pouch+Personal+150g" alt="Pouch Personal" class="w-full h-48 object-cover">
                             <div class="p-5 flex-1 flex flex-col justify-between">
                                 <div>
                                     <h3 class="text-xl font-bold text-brand-brown mb-1">Pouch Personal</h3>
-                                    <p class="text-gray-600 text-sm mb-4">Kemasan 100g. Pas untuk menemani me-time atau ngopi.</p>
+                                    <p class="text-gray-600 text-sm mb-4">Kemasan 150g. Pas untuk menemani me-time atau ngopi santai.</p>
                                 </div>
                                 <div class="flex justify-between items-center mt-auto">
-                                    <span class="text-lg font-extrabold text-brand-orange">Rp 35.000</span>
-                                    <button onclick="addToCart('p1', 'Pouch Personal (100g)', 35000)" class="bg-brand-brown text-white px-3 py-2 rounded-lg hover:bg-orange-900 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                    <span class="text-lg font-extrabold text-brand-orange">Rp 22.000</span>
+                                    <button onclick="addToCart('p1', 'Pouch Personal (150g)', 22000)" class="bg-brand-brown text-white px-3 py-2 rounded-lg hover:bg-orange-900 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Produk 2 (Terlaris) -->
+                    <!-- Produk 2 (Coming Soon) -->
                     <div class="swiper-slide">
-                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition relative border-2 border-brand-orange h-full flex flex-col">
-                            <div class="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Terlaris</div>
-                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Toples+Keluarga" alt="Toples Keluarga" class="w-full h-48 object-cover">
+                        <div class="bg-gray-100 rounded-xl shadow-sm overflow-hidden opacity-75 h-full flex flex-col relative">
+                            <div class="absolute top-0 right-0 bg-gray-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Coming Soon</div>
+                            <img src="https://placehold.co/400x300/e2e8f0/64748b?text=Toples+Keluarga" alt="Toples Keluarga" class="w-full h-48 object-cover grayscale">
                             <div class="p-5 flex-1 flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-xl font-bold text-brand-brown mb-1">Toples Keluarga</h3>
-                                    <p class="text-gray-600 text-sm mb-4">Kemasan 250g. Berbagi kebaikan sehat dengan keluarga.</p>
+                                    <h3 class="text-xl font-bold text-gray-700 mb-1">Toples Keluarga</h3>
+                                    <p class="text-gray-500 text-sm mb-4">Kemasan 250g. Berbagi kebaikan sehat dengan keluarga.</p>
                                 </div>
                                 <div class="flex justify-between items-center mt-auto">
-                                    <span class="text-lg font-extrabold text-brand-orange">Rp 75.000</span>
-                                    <button onclick="addToCart('p2', 'Toples Keluarga (250g)', 75000)" class="bg-brand-orange text-white px-3 py-2 rounded-lg hover:bg-orange-700 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                    <span class="text-base font-bold text-gray-500">Segera Hadir</span>
+                                    <button disabled class="bg-gray-300 text-gray-500 px-3 py-2 rounded-lg text-sm font-bold cursor-not-allowed">Segera</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Produk 3 (Bundle) -->
+                    <!-- Produk 3 (Coming Soon) -->
                     <div class="swiper-slide">
-                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition h-full flex flex-col">
-                            <div class="absolute top-0 right-0 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Hemat 10Rb!</div>
-                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Bundle+Coba" alt="Bundle Hemat" class="w-full h-48 object-cover">
+                        <div class="bg-gray-100 rounded-xl shadow-sm overflow-hidden opacity-75 h-full flex flex-col relative">
+                            <div class="absolute top-0 right-0 bg-gray-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Coming Soon</div>
+                            <img src="https://placehold.co/400x300/e2e8f0/64748b?text=Bundle+Coba" alt="Bundle Hemat" class="w-full h-48 object-cover grayscale">
                             <div class="p-5 flex-1 flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-xl font-bold text-brand-brown mb-1">Bundle "Cobain Dulu"</h3>
-                                    <p class="text-gray-600 text-sm mb-4">1 Toples (250g) + 1 Pouch (100g). Pas untuk stok sebulan.</p>
+                                    <h3 class="text-xl font-bold text-gray-700 mb-1">Bundle "Cobain Dulu"</h3>
+                                    <p class="text-gray-500 text-sm mb-4">Paket hemat gabungan varian terbaik.</p>
                                 </div>
                                 <div class="flex justify-between items-center mt-auto">
-                                    <span class="text-lg font-extrabold text-brand-orange">Rp 100.000</span>
-                                    <button onclick="addToCart('p3', 'Bundle Cobain Dulu', 100000)" class="bg-brand-brown text-white px-3 py-2 rounded-lg hover:bg-orange-900 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                    <span class="text-base font-bold text-gray-500">Segera Hadir</span>
+                                    <button disabled class="bg-gray-300 text-gray-500 px-3 py-2 rounded-lg text-sm font-bold cursor-not-allowed">Segera</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Produk 4 (Hampers) -->
+                    <!-- Produk 4 (Coming Soon) -->
                     <div class="swiper-slide">
-                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition h-full flex flex-col">
-                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Hampers" alt="Hampers" class="w-full h-48 object-cover">
+                        <div class="bg-gray-100 rounded-xl shadow-sm overflow-hidden opacity-75 h-full flex flex-col relative">
+                            <div class="absolute top-0 right-0 bg-gray-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Coming Soon</div>
+                            <img src="https://placehold.co/400x300/e2e8f0/64748b?text=Hampers" alt="Hampers" class="w-full h-48 object-cover grayscale">
                             <div class="p-5 flex-1 flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-xl font-bold text-brand-brown mb-1">Hampers Spesial</h3>
-                                    <p class="text-gray-600 text-sm mb-4">Isi 3 Toples. Cocok untuk kado/bingkisan yang elegan.</p>
+                                    <h3 class="text-xl font-bold text-gray-700 mb-1">Hampers Spesial</h3>
+                                    <p class="text-gray-500 text-sm mb-4">Cocok untuk kado atau bingkisan hari raya.</p>
                                 </div>
                                 <div class="flex justify-between items-center mt-auto">
-                                    <span class="text-lg font-extrabold text-brand-orange">Rp 210.000</span>
-                                    <button onclick="addToCart('p4', 'Hampers Spesial (3 Toples)', 210000)" class="bg-brand-brown text-white px-3 py-2 rounded-lg hover:bg-orange-900 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                    <span class="text-base font-bold text-gray-500">Segera Hadir</span>
+                                    <button disabled class="bg-gray-300 text-gray-500 px-3 py-2 rounded-lg text-sm font-bold cursor-not-allowed">Segera</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Produk 5 (Gift Box) -->
+                    <!-- Produk 5 (Coming Soon) -->
                     <div class="swiper-slide">
-                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition h-full flex flex-col">
-                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Gift+Box" alt="Gift Box" class="w-full h-48 object-cover">
+                        <div class="bg-gray-100 rounded-xl shadow-sm overflow-hidden opacity-75 h-full flex flex-col relative">
+                            <div class="absolute top-0 right-0 bg-gray-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Coming Soon</div>
+                            <img src="https://placehold.co/400x300/e2e8f0/64748b?text=Gift+Box" alt="Gift Box" class="w-full h-48 object-cover grayscale">
                             <div class="p-5 flex-1 flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-xl font-bold text-brand-brown mb-1">Premium Gift Box</h3>
-                                    <p class="text-gray-600 text-sm mb-4">2 Toples + Kartu Ucapan Custom + Box Eksklusif.</p>
+                                    <h3 class="text-xl font-bold text-gray-700 mb-1">Premium Gift Box</h3>
+                                    <p class="text-gray-500 text-sm mb-4">Box eksklusif dengan kartu ucapan custom.</p>
                                 </div>
                                 <div class="flex justify-between items-center mt-auto">
-                                    <span class="text-lg font-extrabold text-brand-orange">Rp 160.000</span>
-                                    <button onclick="addToCart('p5', 'Premium Gift Box', 160000)" class="bg-brand-brown text-white px-3 py-2 rounded-lg hover:bg-orange-900 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                    <span class="text-base font-bold text-gray-500">Segera Hadir</span>
+                                    <button disabled class="bg-gray-300 text-gray-500 px-3 py-2 rounded-lg text-sm font-bold cursor-not-allowed">Segera</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Produk 6 (Reseller) -->
+                    <!-- Produk 6 (Coming Soon) -->
                     <div class="swiper-slide">
-                        <div class="bg-orange-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition h-full flex flex-col">
-                            <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Harga Grosir</div>
-                            <img src="https://placehold.co/400x300/ffedd5/78350f?text=Paket+Reseller" alt="Reseller" class="w-full h-48 object-cover">
+                        <div class="bg-gray-100 rounded-xl shadow-sm overflow-hidden opacity-75 h-full flex flex-col relative">
+                            <div class="absolute top-0 right-0 bg-gray-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Coming Soon</div>
+                            <img src="https://placehold.co/400x300/e2e8f0/64748b?text=Paket+Reseller" alt="Reseller" class="w-full h-48 object-cover grayscale">
                             <div class="p-5 flex-1 flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-xl font-bold text-brand-brown mb-1">Paket Usaha (Reseller)</h3>
-                                    <p class="text-gray-600 text-sm mb-4">10 Pcs Pouch (100g). Peluang untung untuk dijual lagi!</p>
+                                    <h3 class="text-xl font-bold text-gray-700 mb-1">Paket Usaha (Reseller)</h3>
+                                    <p class="text-gray-500 text-sm mb-4">Peluang untung khusus mitra dan reseller.</p>
                                 </div>
                                 <div class="flex justify-between items-center mt-auto">
-                                    <span class="text-lg font-extrabold text-brand-orange">Rp 280.000</span>
-                                    <button onclick="addToCart('p6', 'Paket Usaha Reseller (10 Pouch)', 280000)" class="bg-brand-brown text-white px-3 py-2 rounded-lg hover:bg-orange-900 text-sm font-bold shadow-md"><i class="fas fa-plus"></i> Beli</button>
+                                    <span class="text-base font-bold text-gray-500">Segera Hadir</span>
+                                    <button disabled class="bg-gray-300 text-gray-500 px-3 py-2 rounded-lg text-sm font-bold cursor-not-allowed">Segera</button>
                                 </div>
                             </div>
                         </div>
@@ -315,28 +332,31 @@
             <p class="text-gray-400 text-center mt-10">Keranjang masih kosong.</p>
         </div>
 
-        <div class="p-4 border-t bg-gray-50">
-            <div class="flex justify-between items-center mb-4">
+        <div class="p-4 border-t bg-gray-50 space-y-2">
+            <div class="flex justify-between items-center mb-2">
                 <span class="font-bold text-gray-600">Total:</span>
                 <span id="cart-total" class="font-extrabold text-xl text-brand-orange">Rp 0</span>
             </div>
-            <button onclick="checkoutWA()" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition flex items-center justify-center gap-2">
+            <!-- Tombol Checkout via WhatsApp -->
+            <button onclick="checkoutWA()" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition flex items-center justify-center gap-2 shadow-md">
                 <i class="fab fa-whatsapp text-xl"></i> Pesan via WhatsApp
+            </button>
+            <!-- Tombol Checkout via Shopee -->
+            <button onclick="checkoutShopee()" class="w-full bg-orange-600 text-white font-bold py-3 rounded-lg hover:bg-orange-700 transition flex items-center justify-center gap-2 shadow-md">
+                <i class="fas fa-shopping-bag text-lg"></i> Checkout via Shopee
             </button>
         </div>
     </div>
 
     <!-- ==================== JAVASCRIPT ==================== -->
-    <!-- Swiper JS Library -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <script>
         // INISIALISASI SWIPER (SLIDER)
-        // 1. Swiper untuk Infografis (bisa digeser dan muter/loop terus)
         const swiperInfografis = new Swiper('.swiper-infografis', {
             slidesPerView: 1.2,
             spaceBetween: 20,
-            loop: true, // Membuatnya berputar terus (muter)
+            loop: true,
             centeredSlides: true,
             autoplay: {
                 delay: 3000,
@@ -352,7 +372,6 @@
             }
         });
 
-        // 2. Swiper untuk Produk (Banyak pilihan belanja)
         const swiperProduk = new Swiper('.swiper-produk', {
             slidesPerView: 1.2,
             spaceBetween: 20,
@@ -363,13 +382,14 @@
             breakpoints: {
                 640: { slidesPerView: 2 },
                 768: { slidesPerView: 3 },
-                1024: { slidesPerView: 4 } // Menampilkan 4 produk sejajar di laptop
+                1024: { slidesPerView: 4 }
             }
         });
 
-        // FUNGSI KERANJANG & WHATSAPP
+        // FUNGSI KERANJANG & CHECKOUT
         let cart = [];
         const formatRupiah = (angka) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+        const noWA = "6285701505816"; // Nomor WhatsApp Utama
 
         function toggleCart() {
             document.getElementById('cart-sidebar').classList.toggle('open');
@@ -436,9 +456,6 @@
                 return;
             }
             
-            // EDIT NOMOR WA DISINI (Pastikan mulai dengan 62 tanpa spasi/tanda +)
-            const noWA = "6285701505816"; 
-            
             let message = "Halo Admin *GANORA BITES*, saya ingin memesan:\n\n";
             let total = 0;
             cart.forEach(item => {
@@ -447,6 +464,17 @@
             });
             message += `\n*Total Belanja: ${formatRupiah(total)}*\n\nMohon info ongkirnya ya. Terima kasih!`;
             
+            window.open(`https://wa.me/${noWA}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function checkoutShopee() {
+            // Ganti link di bawah ini dengan link toko Shopee resmi GANORA BITES Anda
+            const linkShopee = "https://shopee.co.id/namatokoandaganorabites";
+            window.open(linkShopee, '_blank');
+        }
+
+        function claimMember() {
+            let message = "Halo Admin *GANORA BITES*, saya ingin melakukan *Klaim Member* dengan melampirkan bukti pembelian terakhir.\n\nMohon verifikasinya ya. Terima kasih!";
             window.open(`https://wa.me/${noWA}?text=${encodeURIComponent(message)}`, '_blank');
         }
     </script>
